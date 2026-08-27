@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/></marker><style>text{font-family:Arial,sans-serif}.box{fill:#eff6ff;stroke:#2563eb;stroke-width:2}.title{font-size:25px;font-weight:bold;fill:#172554}.label{font-size:16px;font-weight:bold;fill:#1e293b}.sub{font-size:13px;fill:#475569}.line{stroke:#2563eb;stroke-width:3;marker-end:url(#a)}</style></defs>
+  <text x="600" y="42" text-anchor="middle" class="title">Laravel Registration Request Lifecycle</text>
+  <g transform="translate(20 100)"><rect class="box" rx="12" width="150" height="90"/><text x="75" y="38" text-anchor="middle" class="label">Browser</text><text x="75" y="62" text-anchor="middle" class="sub">POST form</text></g>
+  <line class="line" x1="170" y1="145" x2="202" y2="145"/>
+  <g transform="translate(205 100)"><rect class="box" rx="12" width="150" height="90"/><text x="75" y="38" text-anchor="middle" class="label">Route</text><text x="75" y="62" text-anchor="middle" class="sub">routes/web.php</text></g>
+  <line class="line" x1="355" y1="145" x2="387" y2="145"/>
+  <g transform="translate(390 100)"><rect class="box" rx="12" width="150" height="90"/><text x="75" y="38" text-anchor="middle" class="label">Validation</text><text x="75" y="62" text-anchor="middle" class="sub">Form Request</text></g>
+  <line class="line" x1="540" y1="145" x2="572" y2="145"/>
+  <g transform="translate(575 100)"><rect class="box" rx="12" width="150" height="90"/><text x="75" y="38" text-anchor="middle" class="label">Controller</text><text x="75" y="62" text-anchor="middle" class="sub">store()</text></g>
+  <line class="line" x1="725" y1="145" x2="757" y2="145"/>
+  <g transform="translate(760 100)"><rect class="box" rx="12" width="150" height="90"/><text x="75" y="38" text-anchor="middle" class="label">Model</text><text x="75" y="62" text-anchor="middle" class="sub">Student::create</text></g>
+  <line class="line" x1="910" y1="145" x2="942" y2="145"/>
+  <g transform="translate(945 100)"><rect class="box" rx="12" width="150" height="90"/><text x="75" y="38" text-anchor="middle" class="label">MySQL</text><text x="75" y="62" text-anchor="middle" class="sub">students table</text></g>
+  <path d="M1020 190 C1020 260,95 260,95 194" fill="none" class="line"/><text x="560" y="280" text-anchor="middle" class="sub">Redirect response: flash message and student profile page</text>
+</svg>

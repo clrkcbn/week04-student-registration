@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="720" viewBox="0 0 700 720">
+  <style>text{font-family:Arial,sans-serif}.head{fill:#1d4ed8}.body{fill:#fff;stroke:#2563eb;stroke-width:2}.title{font-size:25px;font-weight:bold;fill:#172554}.entity{font-size:20px;font-weight:bold;fill:#fff}.field{font-size:15px;fill:#1e293b}.key{font-weight:bold;fill:#1d4ed8}.line{stroke:#cbd5e1}</style>
+  <text x="350" y="38" text-anchor="middle" class="title">Student Registration Database ERD</text>
+  <rect x="100" y="70" width="500" height="600" rx="14" class="body"/><path d="M114 70 H586 A14 14 0 0 1 600 84 V130 H100 V84 A14 14 0 0 1 114 70" class="head"/><text x="350" y="108" text-anchor="middle" class="entity">STUDENTS</text>
+  <g transform="translate(135 160)">
+    <text y="0" class="field key">PK</text><text x="55" y="0" class="field">id</text><text x="320" y="0" class="field">BIGINT</text>
+    <text y="38" class="field key">UK</text><text x="55" y="38" class="field">student_id</text><text x="320" y="38" class="field">VARCHAR(30)</text>
+    <text x="55" y="76" class="field">first_name</text><text x="320" y="76" class="field">VARCHAR(100)</text>
+    <text x="55" y="114" class="field">middle_name</text><text x="320" y="114" class="field">VARCHAR(100), NULL</text>
+    <text x="55" y="152" class="field">last_name</text><text x="320" y="152" class="field">VARCHAR(100)</text>
+    <text y="190" class="field key">UK</text><text x="55" y="190" class="field">email</text><text x="320" y="190" class="field">VARCHAR(255)</text>
+    <text x="55" y="228" class="field">mobile_number</text><text x="320" y="228" class="field">VARCHAR(15)</text>
+    <text x="55" y="266" class="field">date_of_birth</text><text x="320" y="266" class="field">DATE</text>
+    <text x="55" y="304" class="field">gender</text><text x="320" y="304" class="field">ENUM</text>
+    <text x="55" y="342" class="field">program</text><text x="320" y="342" class="field">ENUM</text>
+    <text x="55" y="380" class="field">year_level</text><text x="320" y="380" class="field">TINYINT UNSIGNED</text>
+    <text x="55" y="418" class="field">address</text><text x="320" y="418" class="field">TEXT</text>
+    <text x="55" y="456" class="field">profile_picture</text><text x="320" y="456" class="field">VARCHAR(255)</text>
+    <text x="55" y="494" class="field">created_at</text><text x="320" y="494" class="field">TIMESTAMP</text>
+    <text x="55" y="532" class="field">updated_at</text><text x="320" y="532" class="field">TIMESTAMP</text>
+  </g>
+</svg>
