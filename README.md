@@ -1,59 +1,153 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Student Registration System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Week 4 Mini Project for **ITST 302 – Client-Server Technologies**. This Laravel application replaces paper-based registration with a validated online form, secure profile-picture upload, MySQL record storage, flash notifications, a student list, and an individual profile page.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Responsive Blade registration form styled with Tailwind CSS
+- Server-side validation using a dedicated Form Request
+- Unique Student ID and email constraints
+- JPG/JPEG/PNG profile upload with a 2 MB limit
+- Images stored on Laravel's public storage disk
+- Success flash message and field-level validation feedback
+- Paginated student directory and profile details page
+- Automated feature tests for successful and invalid submissions
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Objectives
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+After completing this project, the student should be able to:
 
-## Learning Laravel
+1. Build a professional registration form using Laravel Blade.
+2. Route browser requests to the correct controller methods.
+3. validate user input on the server before storing it.
+4. show field-specific errors and session-based success messages.
+5. upload and display images through Laravel Storage.
+6. design a relational MySQL table with appropriate constraints.
+7. explain Laravel's request lifecycle from browser to response.
+8. maintain and document the application through Git and Markdown.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Requirements
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP 8.2 or newer
+- Composer 2
+- MySQL 8 or MariaDB
+- PHP extensions required by Laravel, including Fileinfo and PDO MySQL
 
-## Laravel Sponsors
+## Installation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+git clone YOUR_REPOSITORY_URL
+cd week04-student-registration
+composer install
+cp .env.example .env
+php artisan key:generate
+```
 
-### Premium Partners
+Create a MySQL database named `student_registration`, then update the `DB_*` values in `.env`. Continue with:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+php artisan migrate
+php artisan storage:link
+php artisan serve
+```
 
-## Contributing
+Open `http://127.0.0.1:8000`. To run automated checks:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan test
+```
 
-## Code of Conduct
+If you use Windows PowerShell, replace `cp .env.example .env` with `Copy-Item .env.example .env`.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Laravel Request Lifecycle
 
-## Security Vulnerabilities
+The browser submits the form to the named POST route. Laravel creates `StoreStudentRequest`, checks the validation rules, and redirects back with errors if any value is invalid. When the data is valid, `StudentController@store` saves the uploaded picture, creates the database record through the `Student` model, and redirects to the profile page with a success flash message.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```mermaid
+flowchart LR
+    A[Browser] --> B[Web Route]
+    B --> C[Form Request]
+    C -->|Valid| D[Controller]
+    C -->|Invalid| A
+    D --> E[Student Model]
+    E --> F[(MySQL)]
+    F --> G[Profile Response]
+```
 
-## License
+## Validation Rules
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| Field | Rules | Purpose |
+|---|---|---|
+| Student ID | required, string, max 30, unique | Prevents missing and duplicate institutional IDs |
+| Names | required/nullable, string, max 100 | Ensures safe and reasonable text input |
+| Email | required, valid RFC/DNS email, unique | Rejects invalid and duplicate addresses |
+| Mobile number | required, 10–15 digits | Accepts numeric phone data without losing a leading zero |
+| Date of birth | required, date, before today | Rejects missing or future dates |
+| Gender | required, allowed values only | Prevents unexpected values |
+| Program | required, allowed program codes | Keeps academic data consistent |
+| Year level | required, integer, 1–4 | Restricts the value to supported year levels |
+| Address | required, string, max 500 | Requires a usable address and limits its length |
+| Profile picture | required image, JPG/JPEG/PNG, max 2 MB | Reduces unsafe file types and oversized uploads |
+
+Validation is enforced both by Laravel and by unique indexes in MySQL for important identifiers.
+
+## Database Design
+
+The system currently contains one main entity. `id` is the primary key, while `student_id` and `email` have unique constraints.
+
+```mermaid
+erDiagram
+    STUDENTS {
+        bigint id PK
+        varchar student_id UK
+        varchar first_name
+        varchar middle_name NULL
+        varchar last_name
+        varchar email UK
+        varchar mobile_number
+        date date_of_birth
+        enum gender
+        enum program
+        tinyint year_level
+        text address
+        varchar profile_picture
+        timestamp created_at
+        timestamp updated_at
+    }
+```
+
+## Registration Flowchart
+
+```mermaid
+flowchart TD
+    A[Open Registration Page] --> B[Complete Form]
+    B --> C[Submit Registration]
+    C --> D{Valid Data?}
+    D -->|No| E[Show Errors]
+    E --> B
+    D -->|Yes| F[Store Profile Picture]
+    F --> G[Save Student Record]
+    G --> H[Show Success Message]
+    H --> I[Display Student Profile]
+```
+
+## Main Project Structure
+
+```text
+app/Http/Controllers/StudentController.php
+app/Http/Requests/StoreStudentRequest.php
+app/Models/Student.php
+database/migrations/*_create_students_table.php
+resources/views/layouts/app.blade.php
+resources/views/students/{index,create,show}.blade.php
+routes/web.php
+tests/Feature/StudentRegistrationTest.php
+documentation/
+screenshots/
+```
+
+## Problems Encountered and Solutions
+
+1. **Validation errors did not appear beside the correct fields.** The form now checks Laravel's `$errors` bag with `@error` for every input and also displays an error summary.
+2. **Uploaded images were unavailable in the browser.** Pictures are saved on the `public` disk, their relative paths are stored in MySQL, and `php artisan storage:link` exposes them through `public/storage`.
+3. **Phone numbers could lose the first zero when stored as numbers.** The database uses a `varchar` column while validation requires 10–15 digits. This preserves the original number safely.
