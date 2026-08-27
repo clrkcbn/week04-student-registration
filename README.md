@@ -151,3 +151,66 @@ screenshots/
 1. **Validation errors did not appear beside the correct fields.** The form now checks Laravel's `$errors` bag with `@error` for every input and also displays an error summary.
 2. **Uploaded images were unavailable in the browser.** Pictures are saved on the `public` disk, their relative paths are stored in MySQL, and `php artisan storage:link` exposes them through `public/storage`.
 3. **Phone numbers could lose the first zero when stored as numbers.** The database uses a `varchar` column while validation requires 10–15 digits. This preserves the original number safely.
+
+
+## Screenshots
+
+After running the project, add the following images to `screenshots/`:
+
+- `registration-form.png`
+- `validation-errors.png`
+- `successful-registration.png`
+- `flash-message.png`
+- `uploaded-profile-picture.png`
+- `database-records.png`
+- `student-profile.png`
+- `vscode-project-structure.png`
+- `github-repository.png`
+- `terminal-output.png`
+- `browser-output.png`
+
+## Git Commit Plan
+
+Create meaningful commits as you complete and verify each part:
+
+```text
+feat: initialize Laravel student registration project
+feat: create student migration and model
+feat: define student registration routes
+feat: implement student controller
+feat: add server-side registration validation
+feat: build responsive registration form
+feat: implement secure profile picture upload
+feat: display flash success and validation messages
+feat: add student directory and profile page
+test: add student registration feature tests
+docs: add diagrams and technical documentation
+docs: add application screenshots and reflection
+```
+
+Do not create fake commits all at once merely to reach the minimum. Commit your actual progress with accurate messages.
+
+## Documentation
+
+- [Reflection](documentation/reflection.md)
+- [LinkedIn post draft](documentation/linkedin-post.md)
+- [Completion and submission guide](documentation/submission-guide.md)
+- [Laravel request lifecycle diagram](documentation/request-lifecycle.svg)
+- [Database ERD](documentation/database-erd.svg)
+- [Registration flowchart](documentation/registration-flowchart.svg)
+
+## References
+
+Laravel. (n.d.). *Laravel documentation*. https://laravel.com/docs
+
+MDN Web Docs. (n.d.). *Client-side form validation*. https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation
+
+Oracle. (n.d.). *MySQL 8.4 reference manual*. https://dev.mysql.com/doc/refman/8.4/en/
+
+PHP Documentation Group. (n.d.). *PHP manual*. https://www.php.net/manual/en/
+
+Tailwind Labs. (n.d.). *Tailwind CSS documentation*. https://tailwindcss.com/docs
+
+## License
+
+This project is for educational use.
