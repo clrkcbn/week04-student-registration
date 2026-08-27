@@ -157,14 +157,14 @@ screenshots/
 
 After running the project, add the following images to `screenshots/`:
 
-- ![](screenshots/registration-form.png)
-- ![](screenshots/validation-errors.png)
-- ![](screenshots/successful-registration.png)
-- ![](screenshots/student-profile.png)
-- ![](screenshots/database-records.png)
-- ![](screenshots/github-repository.png)
-- ![](screenshots/terminal-output.png)
-- ![](screenshots/browser-output.png)
+ ![Registraion](screenshots/registration-form.png)
+ ![Validation Error](screenshots/validation-errors.png)
+ ![Successful Registration](screenshots/successful-registration.png)
+ ![Student Profile](screenshots/student-profile.png)
+ ![Database Record](screenshots/database-records.png)
+ ![GitHub Repo](screenshots/github-repository.png)
+ ![Terminal Output](screenshots/terminal-output.png)
+ ![Browser Output](screenshots/browser-output.png)
 
 
 ## Documentation
