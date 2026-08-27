@@ -155,8 +155,6 @@ screenshots/
 
 ## Screenshots
 
-After running the project, add the following images to `screenshots/`:
-
  ![Registraion](screenshots/registration-form.png)
  ![Validation Error](screenshots/validation-errors.png)
  ![Successful Registration](screenshots/successful-registration.png)
